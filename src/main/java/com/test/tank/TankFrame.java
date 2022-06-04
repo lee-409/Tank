@@ -31,16 +31,28 @@ public class TankFrame extends Frame {
         System.out.println("paint");
         g.fill3DRect(x,y,50,50,true);
 //        g.fillRect(100,100,50,50);
-        x += 10;
+//        x += 10;
 //        y +=10;
     }
 
     class MyKeyListener extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
-            System.out.println("key pressed");
-//            x += 10;
-//            repaint();
+            int key = e.getKeyCode();
+            switch (key){
+                case KeyEvent.VK_LEFT:
+                    x -= 10;
+                    break;
+                case KeyEvent.VK_UP:
+                    y -= 10;
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    x += 10;
+                    break;
+                case KeyEvent.VK_DOWN:
+                    y += 10;
+                    break;
+            }
         }
 
         @Override
