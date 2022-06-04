@@ -5,6 +5,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame {
+    int x = 200,y = 200;
+
     public TankFrame() {
         setSize(800,600);
         //设置不可改变大小
@@ -19,5 +21,14 @@ public class TankFrame extends Frame {
                 System.exit(0);
             }
         });
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        System.out.println("paint");
+        g.fill3DRect(x,y,50,50,true);
+//        g.fillRect(100,100,50,50);
+        x += 10;
+        y +=10;
     }
 }
