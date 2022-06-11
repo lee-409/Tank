@@ -1,8 +1,6 @@
 package com.test.tank;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Tank {
     private int x, y;
@@ -10,15 +8,6 @@ public class Tank {
     private final static int SPEED = 5;
     private boolean moving = false;
     private TankFrame tf = null;
-    private List<Bullet> bullets = new ArrayList<>();
-
-    public List<Bullet> getBullets() {
-        return bullets;
-    }
-
-    public void setBullets(List<Bullet> bullets) {
-        this.bullets = bullets;
-    }
 
     public boolean isMoving() {
         return moving;
@@ -72,6 +61,6 @@ public class Tank {
     }
 
     public void fire() {
-        tf.bullet = new Bullet(this.x,this.y,this.dir);
+        tf.bullets.add(new Bullet(this.x,this.y,this.dir,this.tf));
     }
 }
