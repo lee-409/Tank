@@ -8,8 +8,11 @@ import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame {
     Tank myTank = new Tank(200, 200,Dir.DOWN);
+    static final int GAME_WIDTH = 800;
+    static final int GAME_HEIGHT = 600;
+
     public TankFrame() {
-        setSize(800,600);
+        setSize(GAME_WIDTH,GAME_HEIGHT);
         //设置不可改变大小
         setResizable(false);
         setTitle("tank war");
@@ -24,6 +27,20 @@ public class TankFrame extends Frame {
         });
         addKeyListener(new MyKeyListener());
     }
+
+    Image offScreenImage = null;
+//    @Override
+//    public void update(Graphics g) {
+//        if (offScreenImage == null) {
+//            this.createImage(GAME_WIDTH,GAME_HEIGHT);
+//        }
+//        Graphics gOffScreen = offScreenImage.getGraphics();
+//        Color c = gOffScreen.getColor();
+//        gOffScreen.fillRect(0,0,GAME_WIDTH,GAME_HEIGHT);
+//        gOffScreen.setColor(c);
+//        paint(gOffScreen);
+//        g.drawImage(offScreenImage,0,0,null);
+//    }
 
     @Override
     public void paint(Graphics g) {
@@ -80,10 +97,15 @@ public class TankFrame extends Frame {
         }
 
         private void setMainTankDir() {
-            if (bL) myTank.setDir( Dir.LEFT);
-            if (bU) myTank.setDir( Dir.UP);
-            if (bR) myTank.setDir( Dir.RIGHT);
-            if (bD) myTank.setDir( Dir.DOWN);
+            if (!bL && !bU && !bR && !bD){
+                myTank.setMoving(false);
+            }else {
+                myTank.setMoving(true);
+                if (bL) myTank.setDir( Dir.LEFT);
+                if (bU) myTank.setDir( Dir.UP);
+                if (bR) myTank.setDir( Dir.RIGHT);
+                if (bD) myTank.setDir( Dir.DOWN);
+            }
         }
 
     }
