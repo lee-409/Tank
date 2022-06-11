@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame {
     Tank myTank = new Tank(200, 200,Dir.DOWN);
+    Bullet bullet= new Bullet(300,300,Dir.DOWN);
     static final int GAME_WIDTH = 800;
     static final int GAME_HEIGHT = 600;
 
@@ -28,23 +29,10 @@ public class TankFrame extends Frame {
         addKeyListener(new MyKeyListener());
     }
 
-    Image offScreenImage = null;
-//    @Override
-//    public void update(Graphics g) {
-//        if (offScreenImage == null) {
-//            this.createImage(GAME_WIDTH,GAME_HEIGHT);
-//        }
-//        Graphics gOffScreen = offScreenImage.getGraphics();
-//        Color c = gOffScreen.getColor();
-//        gOffScreen.fillRect(0,0,GAME_WIDTH,GAME_HEIGHT);
-//        gOffScreen.setColor(c);
-//        paint(gOffScreen);
-//        g.drawImage(offScreenImage,0,0,null);
-//    }
-
     @Override
     public void paint(Graphics g) {
         myTank.paint(g);
+        bullet.paint(g);
     }
 
     class MyKeyListener extends KeyAdapter {
