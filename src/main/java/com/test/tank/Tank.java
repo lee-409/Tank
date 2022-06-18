@@ -6,7 +6,7 @@ import java.util.Random;
 public class Tank {
     private int x, y;
     private Dir dir = Dir.DOWN;
-    private final static int SPEED = 1;
+    private final static int SPEED = 5;
     private boolean moving = true;
     private TankFrame tf = null;
     private boolean living = true;
@@ -67,9 +67,16 @@ public class Tank {
             default:
                 break;
         }
-        if (random.nextInt(10) > 8){
+        if (this.group == Group.BAD && random.nextInt(100) > 95){
             this.fire();
         }
+        if (this.group == Group.BAD && random.nextInt(100) > 95){
+            randomDir();
+        }
+    }
+
+    private void randomDir() {
+        this.dir = Dir.values()[random.nextInt(4)];
     }
 
     public void fire() {
