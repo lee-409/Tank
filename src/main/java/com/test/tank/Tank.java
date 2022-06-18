@@ -15,8 +15,8 @@ public class Tank {
 
     private Group group = Group.BAD;
 
-    public static int WIDTH = ResourcesMgr.tankD.getWidth();
-    public static int HEIGHT = ResourcesMgr.tankD.getHeight();
+    public static int WIDTH = ResourceMgr.tankD.getWidth();
+    public static int HEIGHT = ResourceMgr.tankD.getHeight();
 
     public Tank(int x, int y, Dir dir, Group group, TankFrame tf) {
         this.x = x;
@@ -32,16 +32,16 @@ public class Tank {
         }
         switch (dir){
             case LEFT:
-                g.drawImage(ResourcesMgr.tankL,x,y,null);
+                g.drawImage(ResourceMgr.tankL,x,y,null);
                 break;
             case UP:
-                g.drawImage(ResourcesMgr.tankU,x,y,null);
+                g.drawImage(ResourceMgr.tankU,x,y,null);
                 break;
             case RIGHT:
-                g.drawImage(ResourcesMgr.tankR,x,y,null);
+                g.drawImage(ResourceMgr.tankR,x,y,null);
                 break;
             case DOWN:
-                g.drawImage(ResourcesMgr.tankD,x,y,null);
+                g.drawImage(ResourceMgr.tankD,x,y,null);
                 break;
             default:
                 break;

@@ -1,15 +1,14 @@
 package com.test.tank;
 
 import java.awt.*;
-import java.util.Random;
 
 public class Explode {
     private int x, y;
     private TankFrame tf = null;
     private int step = 0;
 
-    public static int WIDTH = ResourcesMgr.explodes[0].getWidth();
-    public static int HEIGHT = ResourcesMgr.explodes[0].getHeight();
+    public static int WIDTH = ResourceMgr.explodes[0].getWidth();
+    public static int HEIGHT = ResourceMgr.explodes[0].getHeight();
 
     public Explode(int x, int y, TankFrame tf) {
         this.x = x;
@@ -19,8 +18,8 @@ public class Explode {
     }
 
     public void paint(Graphics g) {
-        g.drawImage(ResourcesMgr.explodes[step++],x,y,null);
-        if (step >= ResourcesMgr.explodes.length){
+        g.drawImage(ResourceMgr.explodes[step++], x, y, null);
+        if (step >= ResourceMgr.explodes.length){
             tf.explodes.remove(this);
         }
     }

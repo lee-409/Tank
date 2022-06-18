@@ -6,8 +6,8 @@ public class Bullet {
     private int x, y;
     private Dir dir;
     private final static int SPEED = 10;
-    public static int WIDTH = ResourcesMgr.bulletD.getWidth();
-    public static int HEIGHT = ResourcesMgr.bulletD.getHeight();
+    public static int WIDTH = ResourceMgr.bulletD.getWidth();
+    public static int HEIGHT = ResourceMgr.bulletD.getHeight();
     private TankFrame tf = null;
     private boolean live = true;
     private Group group = Group.BAD;
@@ -32,16 +32,16 @@ public class Bullet {
         }
         switch (dir){
             case LEFT:
-                g.drawImage(ResourcesMgr.bulletL,x,y,null);
+                g.drawImage(ResourceMgr.bulletL,x,y,null);
                 break;
             case UP:
-                g.drawImage(ResourcesMgr.bulletU,x,y,null);
+                g.drawImage(ResourceMgr.bulletU,x,y,null);
                 break;
             case RIGHT:
-                g.drawImage(ResourcesMgr.bulletR,x,y,null);
+                g.drawImage(ResourceMgr.bulletR,x,y,null);
                 break;
             case DOWN:
-                g.drawImage(ResourcesMgr.bulletD,x,y,null);
+                g.drawImage(ResourceMgr.bulletD,x,y,null);
                 break;
             default:
                 break;
@@ -81,7 +81,9 @@ public class Bullet {
         if (rect1.intersects(rect2)) {
             tank.die();
             this.die();
-            tf.explodes.add(new Explode(x,y,tf));
+            int eX = tank.getX() + Tank.WIDTH/2 - Explode.WIDTH/2;
+            int eY = tank.getY() + Tank.HEIGHT/2 - Explode.HEIGHT/2;
+            tf.explodes.add(new Explode(eX, eY, tf));
         }
     }
 
