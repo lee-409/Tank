@@ -60,4 +60,19 @@ public class Bullet {
             live = false;
         }
     }
+
+    //子弹与坦克相撞
+    public void collideWith(Tank tank) {
+        Rectangle rect1 = new Rectangle(this.x, this.y, WIDTH, HEIGHT);
+        Rectangle rect2 = new Rectangle(tank.getX(), tank.getY(), Tank.WIDTH, Tank.HEIGHT);
+        //如果子弹、坦克相交
+        if (rect1.intersects(rect2)) {
+            tank.die();
+            this.die();
+        }
+    }
+
+    private void die() {
+        this.live = false;
+    }
 }
