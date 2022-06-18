@@ -10,11 +10,20 @@ public class Bullet {
     public static int HEIGHT = ResourcesMgr.bulletD.getHeight();
     private TankFrame tf = null;
     private boolean live = true;
+    private Group group = Group.BAD;
 
-    public Bullet(int x, int y, Dir dir, TankFrame tf) {
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+    public Bullet(int x, int y, Dir dir, Group group, TankFrame tf) {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.group = group;
         this.tf = tf;
     }
     public void paint(Graphics g) {
@@ -63,6 +72,9 @@ public class Bullet {
 
     //子弹与坦克相撞
     public void collideWith(Tank tank) {
+        if (this.group == tank.getGroup()){
+            return;
+        }
         Rectangle rect1 = new Rectangle(this.x, this.y, WIDTH, HEIGHT);
         Rectangle rect2 = new Rectangle(tank.getX(), tank.getY(), Tank.WIDTH, Tank.HEIGHT);
         //如果子弹、坦克相交
