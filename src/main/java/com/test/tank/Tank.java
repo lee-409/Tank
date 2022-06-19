@@ -6,7 +6,7 @@ import java.util.Random;
 public class Tank {
     private int x, y;
     private Dir dir = Dir.DOWN;
-    private final static int SPEED = 5;
+    private final static int SPEED = 6;
     private boolean moving = true;
     private TankFrame tf = null;
     private boolean living = true;
@@ -72,6 +72,23 @@ public class Tank {
         }
         if (this.group == Group.BAD && random.nextInt(100) > 95){
             randomDir();
+        }
+
+        boundsCheck();
+    }
+    //¼ì²é±ß½ç
+    private void boundsCheck() {
+        if (this.x < 2 ){
+            x = 2;
+        }
+        if (this.y < 28){
+            y = 28;
+        }
+        if (this.x > TankFrame.GAME_WIDTH - Tank.WIDTH - 2){
+            x = TankFrame.GAME_WIDTH - Tank.WIDTH - 2;
+        }
+        if (this.y > TankFrame.GAME_HEIGHT - Tank.HEIGHT - 2){
+            y = TankFrame.GAME_HEIGHT - Tank.HEIGHT - 2;
         }
     }
 
