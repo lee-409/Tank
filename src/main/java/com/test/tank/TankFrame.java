@@ -130,6 +130,7 @@ public class TankFrame extends Frame {
                     break;
                 case KeyEvent.VK_CONTROL:
                     myTank.fire();
+                    new Thread(()->new Audio("audio/tank_fire.wav").play()).start();
                     break;
                 default:
                     break;
