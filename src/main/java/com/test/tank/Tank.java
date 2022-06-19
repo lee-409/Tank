@@ -15,6 +15,8 @@ public class Tank {
 
     private Group group = Group.BAD;
 
+    Rectangle rect = new Rectangle();
+
     public static int WIDTH = ResourceMgr.goodTankU.getWidth();
     public static int HEIGHT = ResourceMgr.goodTankU.getHeight();
 
@@ -24,6 +26,10 @@ public class Tank {
         this.dir = dir;
         this.group = group;
         this.tf = tf;
+        rect.x = this.x;
+        rect.y = this.y;
+        rect.width = WIDTH;
+        rect.height = HEIGHT;
     }
 
     public void paint(Graphics g) {
@@ -67,14 +73,17 @@ public class Tank {
             default:
                 break;
         }
+
         if (this.group == Group.BAD && random.nextInt(100) > 95){
             this.fire();
         }
         if (this.group == Group.BAD && random.nextInt(100) > 95){
             randomDir();
         }
-
         boundsCheck();
+        //uptate rect
+        rect.x = this.x;
+        rect.y = this.y;
     }
     //¼ì²é±ß½ç
     private void boundsCheck() {
