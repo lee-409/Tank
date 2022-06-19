@@ -6,7 +6,7 @@ import java.util.Random;
 public class Tank {
     private int x, y;
     private Dir dir = Dir.DOWN;
-    private final static int SPEED = 6;
+    int tankSpeed = Integer.parseInt((String) PropertyMgr.get("tankSpeed"));
     private boolean moving = true;
     private TankFrame tf = null;
     private boolean living = true;
@@ -59,16 +59,16 @@ public class Tank {
         if (!moving) return;
         switch (dir){
             case LEFT:
-                x -= SPEED;
+                x -= tankSpeed;
                 break;
             case UP:
-                y -= SPEED;
+                y -= tankSpeed;
                 break;
             case RIGHT:
-                x += SPEED;
+                x += tankSpeed;
                 break;
             case DOWN:
-                y += SPEED;
+                y += tankSpeed;
                 break;
             default:
                 break;

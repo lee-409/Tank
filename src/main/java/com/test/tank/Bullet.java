@@ -5,7 +5,7 @@ import java.awt.*;
 public class Bullet {
     private int x, y;
     private Dir dir;
-    private final static int SPEED = 10;
+    int bulletSpeed = Integer.parseInt((String) PropertyMgr.get("bulletSpeed"));
     public static int WIDTH = ResourceMgr.bulletD.getWidth();
     public static int HEIGHT = ResourceMgr.bulletD.getHeight();
     private TankFrame tf = null;
@@ -56,16 +56,16 @@ public class Bullet {
     private void move() {
         switch (dir){
             case LEFT:
-                x -= SPEED;
+                x -= bulletSpeed;
                 break;
             case UP:
-                y -= SPEED;
+                y -= bulletSpeed;
                 break;
             case RIGHT:
-                x += SPEED;
+                x += bulletSpeed;
                 break;
             case DOWN:
-                y += SPEED;
+                y += bulletSpeed;
                 break;
             default:
                 break;
