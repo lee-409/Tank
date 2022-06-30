@@ -1,6 +1,7 @@
 package com.test.tank;
 
 import java.awt.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 
 public class Tank {
@@ -29,6 +30,12 @@ public class Tank {
         rect.width = WIDTH;
         rect.height = HEIGHT;
         if (group == Group.GOOD){
+            String goodFsName = (String) PropertyMgr.get("goodFs");
+            try {
+                fs = (FireStrategy) Class.forName(goodFsName).getDeclaredConstructor().newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             fs = new FourDirFireStrategy();
         }else {
             fs = new DefaultFireStrategy();
