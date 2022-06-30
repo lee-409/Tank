@@ -4,21 +4,19 @@ import java.awt.*;
 import java.util.Random;
 
 public class Tank {
-    private int x, y;
-    private Dir dir = Dir.DOWN;
-    int tankSpeed = Integer.parseInt((String) PropertyMgr.get("tankSpeed"));
-    private boolean moving = true;
-    private TankFrame tf = null;
-    private boolean living = true;
-
-    private Random random = new Random();
-
-    private Group group = Group.BAD;
-
-    Rectangle rect = new Rectangle();
-
     public static int WIDTH = ResourceMgr.goodTankU.getWidth();
     public static int HEIGHT = ResourceMgr.goodTankU.getHeight();
+    int x, y;
+    Dir dir = Dir.DOWN;
+    int tankSpeed = Integer.parseInt((String) PropertyMgr.get("tankSpeed"));
+    private boolean moving = true;
+    TankFrame tf = null;
+    private boolean living = true;
+    private Random random = new Random();
+    Group group = Group.BAD;
+    Rectangle rect = new Rectangle();
+
+    FireStrategy fs;
 
     public Tank(int x, int y, Dir dir, Group group, TankFrame tf) {
         this.x = x;
@@ -30,6 +28,15 @@ public class Tank {
         rect.y = this.y;
         rect.width = WIDTH;
         rect.height = HEIGHT;
+        if (group == Group.GOOD){
+            fs = new FourDirFireStrategy();
+        }else {
+            fs = new DefaultFireStrategy();
+        }
+    }
+
+    public void fire() {
+        fs.fire(this);
     }
 
     public void paint(Graphics g) {
@@ -103,12 +110,6 @@ public class Tank {
 
     private void randomDir() {
         this.dir = Dir.values()[random.nextInt(4)];
-    }
-
-    public void fire() {
-        int bX = this.x + Tank.WIDTH/2 - Bullet.WIDTH/2;
-        int bY = this.y + Tank.HEIGHT/2 - Bullet.HEIGHT/2;
-        tf.bullets.add(new Bullet(bX,bY,this.dir,this.group,this.tf));
     }
 
     public void die() {

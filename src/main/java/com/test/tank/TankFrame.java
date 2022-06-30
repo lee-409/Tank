@@ -130,7 +130,7 @@ static int GAME_WIDTH = Integer.parseInt((String) PropertyMgr.get("gameWidth"));
                     break;
                 case KeyEvent.VK_CONTROL:
                     myTank.fire();
-                    new Thread(()->new Audio("audio/tank_fire.wav").play()).start();
+//                    new Thread(()->new Audio("audio/tank_fire.wav").play()).start();
                     break;
                 default:
                     break;
