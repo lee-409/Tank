@@ -1,5 +1,7 @@
 package com.test.tank;
 
+import com.test.tank.abstractfactory.*;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -11,12 +13,15 @@ import java.util.List;
 
 public class TankFrame extends Frame {
     Tank myTank = new Tank(200, 400,Dir.DOWN,Group.GOOD, this);
-    List<Bullet> bullets = new ArrayList<>();
-    List<Tank> tanks = new ArrayList<>();
-    List<Explode> explodes = new ArrayList<>();
+    public List<BaseBullet> bullets = new ArrayList<>();
+    public List<BaseTank> tanks = new ArrayList<>();
+    public List<BaseExplode> explodes = new ArrayList<>();
+    public GameFactory gf = new DefaultFactory();
+//    public GameFactory gf = new RectFactory();
+
 //    Bullet bullet= new Bullet(300,300,Dir.DOWN);
-    static int GAME_WIDTH = Integer.parseInt((String) PropertyMgr.get("gameWidth"));
-    static int GAME_HEIGHT = Integer.parseInt((String) PropertyMgr.get("gameHeight"));
+    public static int GAME_WIDTH = Integer.parseInt((String) PropertyMgr.get("gameWidth"));
+    public static int GAME_HEIGHT = Integer.parseInt((String) PropertyMgr.get("gameHeight"));
     public TankFrame() {
         setSize(GAME_WIDTH,GAME_HEIGHT);
         //设置不可改变大小

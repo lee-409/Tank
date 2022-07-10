@@ -1,11 +1,10 @@
-package com.test.tank;
+package com.test.tank.abstractfactory;
 
-import com.test.tank.abstractfactory.BaseBullet;
-import com.test.tank.abstractfactory.BaseTank;
+import com.test.tank.*;
 
 import java.awt.*;
 
-public class Bullet extends BaseBullet {
+public class RectBullet extends BaseBullet {
     private int x, y;
     private Dir dir;
     int bulletSpeed = Integer.parseInt((String) PropertyMgr.get("bulletSpeed"));
@@ -23,7 +22,7 @@ public class Bullet extends BaseBullet {
     public void setGroup(Group group) {
         this.group = group;
     }
-    public Bullet(int x, int y, Dir dir, Group group, TankFrame tf) {
+    public RectBullet(int x, int y, Dir dir, Group group, TankFrame tf) {
         this.x = x;
         this.y = y;
         this.dir = dir;
@@ -34,28 +33,17 @@ public class Bullet extends BaseBullet {
         rect.width = WIDTH;
         rect.height = HEIGHT;
 
+//        tf.rectBullets.add(this);
         tf.bullets.add(this);
     }
     public void paint(Graphics g) {
         if (!live){
             tf.bullets.remove(this);
         }
-        switch (dir){
-            case LEFT:
-                g.drawImage(ResourceMgr.bulletL,x,y,null);
-                break;
-            case UP:
-                g.drawImage(ResourceMgr.bulletU,x,y,null);
-                break;
-            case RIGHT:
-                g.drawImage(ResourceMgr.bulletR,x,y,null);
-                break;
-            case DOWN:
-                g.drawImage(ResourceMgr.bulletD,x,y,null);
-                break;
-            default:
-                break;
-        }
+        Color c = g.getColor();
+        g.setColor(Color.YELLOW);
+        g.fillRect(x, y, 20, 20);
+        g.setColor(c);
         move();
     }
     private void move() {
