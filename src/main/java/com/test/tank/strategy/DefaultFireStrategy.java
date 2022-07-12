@@ -1,4 +1,9 @@
-package com.test.tank;
+package com.test.tank.strategy;
+
+import com.test.tank.Audio;
+import com.test.tank.Bullet;
+import com.test.tank.Group;
+import com.test.tank.Tank;
 
 public class DefaultFireStrategy implements FireStrategy{
     @Override

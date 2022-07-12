@@ -1,21 +1,29 @@
 package com.test.tank;
 
+import com.test.tank.strategy.DefaultFireStrategy;
+import com.test.tank.strategy.FireStrategy;
+import com.test.tank.strategy.FourDirFireStrategy;
+
 import java.awt.*;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 
-public class Tank {
+public class Tank extends GameObject {
     public static int WIDTH = ResourceMgr.goodTankU.getWidth();
     public static int HEIGHT = ResourceMgr.goodTankU.getHeight();
-    int x, y;
-    Dir dir = Dir.DOWN;
+    public int x, y;
+    public int oldX, oldY;
+    public Dir dir = Dir.DOWN;
     int tankSpeed = Integer.parseInt((String) PropertyMgr.get("tankSpeed"));
     private boolean moving = true;
-    GameModel gm = null;
+    public GameModel gm = null;
     private boolean living = true;
     private Random random = new Random();
-    Group group = Group.BAD;
+    public Group group = Group.BAD;
     Rectangle rect = new Rectangle();
+
+    public Rectangle getRect() {
+        return rect;
+    }
 
     FireStrategy fs;
 
@@ -48,7 +56,7 @@ public class Tank {
 
     public void paint(Graphics g) {
         if (!living){
-            gm.tanks.remove(this);
+            gm.remove(this);
         }
         switch (dir){
             case LEFT:
@@ -70,6 +78,8 @@ public class Tank {
     }
 
     private void move() {
+        oldX = x;
+        oldY = y;
         if (!moving) return;
         switch (dir){
             case LEFT:
@@ -161,5 +171,9 @@ public class Tank {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public void stop() {
+        moving = false;
     }
 }
