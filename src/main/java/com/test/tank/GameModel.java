@@ -2,6 +2,7 @@ package com.test.tank;
 
 import com.test.tank.cor.BulletTankCollider;
 import com.test.tank.cor.Collider;
+import com.test.tank.cor.ColliderChain;
 import com.test.tank.cor.TankTankCollider;
 
 import java.awt.*;
@@ -14,8 +15,9 @@ public class GameModel {
 //    java.util.List<Tank> tanks = new ArrayList<>();
 //    List<Explode> explodes = new ArrayList<>();
 
-    Collider collider = new BulletTankCollider();
-    Collider collider2 = new TankTankCollider();
+//    Collider collider = new BulletTankCollider();
+//    Collider collider2 = new TankTankCollider();
+    ColliderChain chain = new ColliderChain();
 
     List<GameObject> objects = new ArrayList<>();
 
@@ -51,8 +53,7 @@ public class GameModel {
             for (int j = i+1; j <objects.size(); j++){
                 GameObject o1 = objects.get(i);
                 GameObject o2 = objects.get(j);
-                collider.collide(o1, o2);
-                collider2.collide(o1, o2);
+                chain.collide(o1, o2);
             }
         }
     }
