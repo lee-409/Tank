@@ -15,11 +15,10 @@ public class Tank extends GameObject {
     public Dir dir = Dir.DOWN;
     int tankSpeed = Integer.parseInt((String) PropertyMgr.get("tankSpeed"));
     private boolean moving = true;
-    public GameModel gm = null;
     private boolean living = true;
     private Random random = new Random();
     public Group group = Group.BAD;
-    Rectangle rect = new Rectangle();
+    public Rectangle rect = new Rectangle();
 
     public Rectangle getRect() {
         return rect;
@@ -27,12 +26,11 @@ public class Tank extends GameObject {
 
     FireStrategy fs;
 
-    public Tank(int x, int y, Dir dir, Group group, GameModel gm) {
+    public Tank(int x, int y, Dir dir, Group group) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.group = group;
-        this.gm = gm;
         rect.x = this.x;
         rect.y = this.y;
         rect.width = WIDTH;
@@ -48,15 +46,21 @@ public class Tank extends GameObject {
         }else {
             fs = new DefaultFireStrategy();
         }
+        GameModel.getInstance().add(this);
     }
 
     public void fire() {
         fs.fire(this);
     }
+    public void back() {
+        x = oldX;
+        y = oldY;
+    }
 
+    @Override
     public void paint(Graphics g) {
         if (!living){
-            gm.remove(this);
+            GameModel.getInstance().remove(this);
         }
         switch (dir){
             case LEFT:

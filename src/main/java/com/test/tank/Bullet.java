@@ -8,10 +8,9 @@ public class Bullet extends GameObject {
     int bulletSpeed = Integer.parseInt((String) PropertyMgr.get("bulletSpeed"));
     public static int WIDTH = ResourceMgr.bulletD.getWidth();
     public static int HEIGHT = ResourceMgr.bulletD.getHeight();
-    private GameModel gm = null;
     private boolean live = true;
-    private Group group = Group.BAD;
-    Rectangle rect = new Rectangle();
+    public Group group = Group.BAD;
+    public Rectangle rect = new Rectangle();
 
     public Group getGroup() {
         return group;
@@ -20,22 +19,23 @@ public class Bullet extends GameObject {
     public void setGroup(Group group) {
         this.group = group;
     }
-    public Bullet(int x, int y, Dir dir, Group group, GameModel gm) {
+    public Bullet(int x, int y, Dir dir, Group group) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.group = group;
-        this.gm = gm;
+
         rect.x = this.x;
         rect.y = this.y;
         rect.width = WIDTH;
         rect.height = HEIGHT;
 
-        gm.add(this);
+        GameModel.getInstance().add(this);
     }
+    @Override
     public void paint(Graphics g) {
         if (!live){
-            gm.remove(this);
+            GameModel.getInstance().remove(this);
         }
         switch (dir){
             case LEFT:
@@ -80,22 +80,7 @@ public class Bullet extends GameObject {
         }
     }
 
-    //子弹与坦克相撞
-    public void collideWith(Tank tank) {
-        if (this.group == tank.getGroup()){
-            return;
-        }
-        //如果子弹、坦克相交
-        if (rect.intersects(tank.rect)) {
-            tank.die();
-            this.die();
-            int eX = tank.getX() + Tank.WIDTH/2 - Explode.WIDTH/2;
-            int eY = tank.getY() + Tank.HEIGHT/2 - Explode.HEIGHT/2;
-            gm.add(new Explode(eX, eY, gm));
-        }
-    }
-
-    private void die() {
+    public void die() {
         this.live = false;
     }
 }

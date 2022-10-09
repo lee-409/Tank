@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class TankFrame extends Frame {
-    GameModel gm = new GameModel();
+    GameModel gm = GameModel.getInstance();
 
 
 //    Bullet bullet= new Bullet(300,300,Dir.DOWN);
