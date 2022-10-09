@@ -3,7 +3,6 @@ package com.test.tank;
 import java.awt.*;
 
 public class Explode extends GameObject {
-    private int x, y;
     private int step = 0;
 
     public static int WIDTH = ResourceMgr.explodes[0].getWidth();
@@ -38,5 +37,15 @@ public class Explode extends GameObject {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    @Override
+    public int getWidth() {
+        return WIDTH;
+    }
+
+    @Override
+    public int getHeight() {
+        return HEIGHT;
     }
 }

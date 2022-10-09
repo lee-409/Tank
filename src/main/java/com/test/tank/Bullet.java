@@ -3,7 +3,6 @@ package com.test.tank;
 import java.awt.*;
 
 public class Bullet extends GameObject {
-    private int x, y;
     private Dir dir;
     int bulletSpeed = Integer.parseInt((String) PropertyMgr.get("bulletSpeed"));
     public static int WIDTH = ResourceMgr.bulletD.getWidth();
@@ -55,6 +54,17 @@ public class Bullet extends GameObject {
         }
         move();
     }
+
+    @Override
+    public int getWidth() {
+        return WIDTH;
+    }
+
+    @Override
+    public int getHeight() {
+        return HEIGHT;
+    }
+
     private void move() {
         switch (dir){
             case LEFT:
