@@ -1,10 +1,15 @@
 package com.test.tank;
 
+import com.test.tank.observer.TankFireEvent;
+import com.test.tank.observer.TankFireHandler;
+import com.test.tank.observer.TankFireObserver;
 import com.test.tank.strategy.DefaultFireStrategy;
 import com.test.tank.strategy.FireStrategy;
 import com.test.tank.strategy.FourDirFireStrategy;
 
 import java.awt.*;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Tank extends GameObject {
@@ -188,5 +193,13 @@ public class Tank extends GameObject {
     @Override
     public int getHeight() {
         return HEIGHT;
+    }
+
+    private List<TankFireHandler> fireObservers = Arrays.asList(new TankFireHandler());
+    public void handleFireKey() {
+        TankFireEvent event = new TankFireEvent(this);
+        for (TankFireObserver o : fireObservers) {
+            o.actionOnFire(event);
+        }
     }
 }

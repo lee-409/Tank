@@ -22,10 +22,10 @@ public class TailDecorator extends GODecorator {
         this.y = go.y;
 
         go.paint(g);
-        Color c = g.getColor();
-        g.setColor(Color.YELLOW);
-        g.drawLine(super.go.x, super.go.y, go.x + getWidth(), go.y + getHeight());
-        g.setColor(c);
+//        Color c = g.getColor();
+//        g.setColor(Color.YELLOW);
+//        g.drawLine(super.go.x, super.go.y, go.x + getWidth(), go.y + getHeight());
+//        g.setColor(c);
     }
 
     @Override
